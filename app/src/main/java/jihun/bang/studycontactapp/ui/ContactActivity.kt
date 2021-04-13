@@ -1,18 +1,13 @@
-package jihun.bang.studycontactapp
+package jihun.bang.studycontactapp.ui
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import jihun.bang.studycontactapp.databinding.ActivityMainBinding
-import jihun.bang.studycontactapp.di.networkModule
-import jihun.bang.studycontactapp.di.viewModelModule
-import jihun.bang.studycontactapp.ui.ContactViewModel
-import jihun.bang.studycontactapp.ui.RecyclerAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.context.startKoin
 
-class MainActivity : AppCompatActivity() {
+class ContactActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater).apply { setContentView(this.root) }
     }
@@ -21,16 +16,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startKoin {
-            modules(networkModule, viewModelModule)
-        }
 
         recyclerAdapter.submitList(viewModel.contactsLiveData.value?.contacts ?: listOf())
 
         // RecyclerView 설정
         binding.recyclerView.apply {
             layoutManager =
-                LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+                LinearLayoutManager(this@ContactActivity, LinearLayoutManager.VERTICAL, false)
             adapter = recyclerAdapter
         }
 
