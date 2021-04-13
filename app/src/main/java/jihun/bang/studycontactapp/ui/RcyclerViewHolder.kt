@@ -3,19 +3,13 @@ package jihun.bang.studycontactapp.ui
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import jihun.bang.studycontactapp.R
 import jihun.bang.studycontactapp.data.ContactModel
+import jihun.bang.studycontactapp.databinding.ContactItemBinding
 
 class RecyclerViewHolder(
-    itemView: View
-) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-    private val txtNameId: TextView = itemView.findViewById(R.id.txtNameId)
-    private val txtEmail: TextView = itemView.findViewById(R.id.txtEmail)
-    private val imageView: ImageView = itemView.findViewById(R.id.imageView)
-
+    private val binding: ContactItemBinding
+) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
     init {
         itemView.setOnClickListener(this)
     }
@@ -24,8 +18,8 @@ class RecyclerViewHolder(
     @SuppressLint("SetTextI18n")
     fun bind(model: ContactModel) {
         Log.d("로그", "[RecyclerViewHolder][bind] Called Model = $model")
-        txtNameId.text = "${model.name}(${model.id})"
-        txtEmail.text = model.email
+        binding.model = model
+        binding.executePendingBindings()
     }
 
     override fun onClick(p0: View?) {

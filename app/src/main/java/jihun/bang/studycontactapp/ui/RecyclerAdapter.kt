@@ -4,9 +4,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import jihun.bang.studycontactapp.R
 import jihun.bang.studycontactapp.data.ContactModel
 import jihun.bang.studycontactapp.data.ContactsResponse
+import jihun.bang.studycontactapp.databinding.ContactItemBinding
 
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
     val modelList = mutableListOf<ContactModel>()
@@ -22,7 +22,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
         // 연결할 레이아웃 설정
         Log.d("로그", "[RecyclerAdapter][onCreateViewHolder] Called")
         return RecyclerViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item, parent, false)
+            ContactItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -37,7 +37,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
         this.modelList.addAll(modelList)
     }
 
-    fun updateItem(contactsResponse: ContactsResponse){
+    fun updateItem(contactsResponse: ContactsResponse) {
         modelList.addAll(contactsResponse.contacts - modelList)
     }
 }
