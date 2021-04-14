@@ -1,4 +1,4 @@
-package jihun.bang.studycontactapp.ui
+package jihun.bang.studycontactapp.ui.contact
 
 import android.os.Bundle
 import android.util.Log
@@ -12,13 +12,11 @@ class ContactActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater).apply { setContentView(this.root) }
     }
     private val viewModel: ContactViewModel by viewModel()
-    private val recyclerAdapter by lazy { RecyclerAdapter() }
+    private val recyclerAdapter by lazy { ContactRecyclerAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        recyclerAdapter.submitList(viewModel.contactsLiveData.value?.contacts ?: listOf())
-
+        Log.d("로그", "[MainActivity][onCreate] Called")
         // RecyclerView 설정
         binding.recyclerView.apply {
             layoutManager =
@@ -30,7 +28,6 @@ class ContactActivity : AppCompatActivity() {
             Log.d("로그", "[MainActivity][onCreate] btnRefresh Click")
             viewModel.getContacts()
         }
-
         viewModel.contactsLiveData.observe(this) {
             recyclerAdapter.updateItem(it)
         }

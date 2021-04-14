@@ -13,9 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyContactApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.ContactActivity">
+        <activity android:name=".ui.contact.ContactActivity" />
+        <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

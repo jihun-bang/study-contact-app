@@ -1,4 +1,4 @@
-package jihun.bang.studycontactapp.data
+package jihun.bang.studycontactapp.data.contact
 
 data class ContactModel(val email: String, val id: Int, val name: String)
 

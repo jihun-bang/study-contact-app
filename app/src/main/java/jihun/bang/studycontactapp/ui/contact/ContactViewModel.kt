@@ -1,12 +1,13 @@
-package jihun.bang.studycontactapp.ui
+package jihun.bang.studycontactapp.ui.contact
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import jihun.bang.studycontactapp.data.ContactApi
-import jihun.bang.studycontactapp.data.ContactsResponse
+import jihun.bang.studycontactapp.data.contact.ContactApi
+import jihun.bang.studycontactapp.data.contact.ContactsResponse
+import jihun.bang.studycontactapp.ui.BaseViewModel
 
 class ContactViewModel(private val contactApi: ContactApi) : BaseViewModel() {
     private val _contactsLiveData = MutableLiveData<ContactsResponse>()

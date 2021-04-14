@@ -1,19 +1,20 @@
-package jihun.bang.studycontactapp.ui
+package jihun.bang.studycontactapp.ui.contact
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import jihun.bang.studycontactapp.data.ContactModel
-import jihun.bang.studycontactapp.data.ContactsResponse
+import jihun.bang.studycontactapp.data.contact.ContactModel
+import jihun.bang.studycontactapp.data.contact.ContactsResponse
 import jihun.bang.studycontactapp.databinding.ContactItemBinding
+import okhttp3.internal.notify
 
-class RecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
+class ContactRecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
     val modelList = mutableListOf<ContactModel>()
 
     // 목록의 아이템 수
     override fun getItemCount(): Int {
-        Log.d("로그", "[RecyclerAdapter][getItemCount] Called")
+        Log.d("로그", "[RecyclerAdapter][getItemCount] ${modelList.size}")
         return modelList.size
     }
 
@@ -32,12 +33,10 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
         holder.bind(modelList[position])
     }
 
-    fun submitList(modelList: List<ContactModel>) {
-        this.modelList.clear()
-        this.modelList.addAll(modelList)
-    }
-
     fun updateItem(contactsResponse: ContactsResponse) {
-        modelList.addAll(contactsResponse.contacts - modelList)
+        Log.d("로그", "[RecyclerAdapter][updateItem] Called")
+        this.modelList.clear()
+        this.modelList.addAll(contactsResponse.contacts)
+        notifyDataSetChanged()
     }
 }

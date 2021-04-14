@@ -1,4 +1,4 @@
-package jihun.bang.studycontactapp.data
+package jihun.bang.studycontactapp.data.contact
 
 import io.reactivex.Single
 import retrofit2.http.GET

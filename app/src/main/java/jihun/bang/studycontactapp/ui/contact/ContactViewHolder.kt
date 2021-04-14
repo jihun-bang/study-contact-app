@@ -1,10 +1,10 @@
-package jihun.bang.studycontactapp.ui
+package jihun.bang.studycontactapp.ui.contact
 
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import jihun.bang.studycontactapp.data.ContactModel
+import jihun.bang.studycontactapp.data.contact.ContactModel
 import jihun.bang.studycontactapp.databinding.ContactItemBinding
 
 class RecyclerViewHolder(
