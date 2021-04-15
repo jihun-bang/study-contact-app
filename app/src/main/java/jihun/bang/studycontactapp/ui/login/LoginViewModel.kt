@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import jihun.bang.studycontactapp.data.login.LoginApi
 import jihun.bang.studycontactapp.data.login.LoginModel
 import jihun.bang.studycontactapp.data.login.LoginResultModel
-import jihun.bang.studycontactapp.ui.BaseViewModel
+import jihun.bang.studycontactapp.ui.base.BaseViewModel
 
 class LoginViewModel(private val loginApi: LoginApi) : BaseViewModel() {
     private val _loginRequestLiveData = MutableLiveData<LoginResultModel>()

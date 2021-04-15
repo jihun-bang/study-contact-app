@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import jihun.bang.studycontactapp.data.contact.*
-import jihun.bang.studycontactapp.ui.BaseViewModel
+import jihun.bang.studycontactapp.ui.base.BaseViewModel
 
 class ContactViewModel(private val contactApi: ContactApi) : BaseViewModel() {
     private val _contactsLiveData = MutableLiveData<ContactsResponse>()
@@ -16,6 +16,10 @@ class ContactViewModel(private val contactApi: ContactApi) : BaseViewModel() {
     private val _createContactLiveData = MutableLiveData<ContactResponse>()
     val createContactLiveData: LiveData<ContactResponse>
         get() = _createContactLiveData
+
+    private val _deleteContactLiveData = MutableLiveData<ContactResponse>()
+    val deleteContactLiveData: LiveData<ContactResponse>
+        get() = _deleteContactLiveData
 
     private var cursorId: Long = 0
     private var hasMore = true
@@ -67,6 +71,24 @@ class ContactViewModel(private val contactApi: ContactApi) : BaseViewModel() {
                 }, { e ->
                     e.printStackTrace()
                     Log.e("로그", "[ContactViewModel][addContact] $e")
+                })
+
+        )
+    }
+
+    fun deleteContact(id: Long) {
+        addDisposable(
+            contactApi
+                .deleteContact(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    Log.e("로그", "[ContactViewModel][deleteContact] $it")
+                    _deleteContactLiveData.value = it
+                    getContacts()
+                }, { e ->
+                    e.printStackTrace()
+                    Log.e("로그", "[ContactViewModel][deleteContact] $e")
                 })
 
         )

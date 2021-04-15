@@ -1,14 +1,15 @@
 package jihun.bang.studycontactapp.ui.contact
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import jihun.bang.studycontactapp.data.contact.ContactModel
 import jihun.bang.studycontactapp.databinding.ContactItemBinding
+import jihun.bang.studycontactapp.ui.contact.util.RecyclerViewInterface
 
 class RecyclerViewHolder(
-    private val binding: ContactItemBinding
+    private val binding: ContactItemBinding,
+    private val recyclerViewInterface: RecyclerViewInterface
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
     init {
         itemView.setOnClickListener(this)
@@ -23,6 +24,6 @@ class RecyclerViewHolder(
     }
 
     override fun onClick(p0: View?) {
-        Log.d("로그", "[RecyclerViewHolder][onClick] position = $absoluteAdapterPosition")
+        this.recyclerViewInterface.onItemClicked(binding.model!!.id)
     }
 }

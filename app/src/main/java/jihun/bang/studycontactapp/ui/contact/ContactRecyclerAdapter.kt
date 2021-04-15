@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import jihun.bang.studycontactapp.data.contact.ContactModel
 import jihun.bang.studycontactapp.databinding.ContactItemBinding
 import jihun.bang.studycontactapp.ui.contact.util.ContactDiffCallback
+import jihun.bang.studycontactapp.ui.contact.util.RecyclerViewInterface
 
-class ContactRecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
+class ContactRecyclerAdapter(private val recyclerViewInterface: RecyclerViewInterface) : RecyclerView.Adapter<RecyclerViewHolder>() {
     private val oldList = mutableListOf<ContactModel>()
-    private val newList = mutableListOf<ContactModel>()
 
     // 목록의 아이템 수
     override fun getItemCount(): Int {
@@ -23,7 +23,7 @@ class ContactRecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
         // 연결할 레이아웃 설정
         Log.d("로그", "[RecyclerAdapter][onCreateViewHolder] Called")
         return RecyclerViewHolder(
-            ContactItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ContactItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), recyclerViewInterface
         )
     }
 

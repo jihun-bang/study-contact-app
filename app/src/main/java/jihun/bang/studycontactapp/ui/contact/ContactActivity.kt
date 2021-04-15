@@ -4,21 +4,18 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
-import jihun.bang.studycontactapp.R
 import jihun.bang.studycontactapp.databinding.ActivityContactBinding
-import jihun.bang.studycontactapp.ui.contact.addContact.AddContactFragment
+import jihun.bang.studycontactapp.ui.contact.util.RecyclerViewInterface
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class ContactActivity : AppCompatActivity() {
+class ContactActivity : AppCompatActivity(), RecyclerViewInterface {
     private val binding by lazy {
         ActivityContactBinding.inflate(layoutInflater).apply { setContentView(this.root) }
     }
     private val viewModel: ContactViewModel by viewModel()
-    private val recyclerAdapter by lazy { ContactRecyclerAdapter() }
+    private val recyclerAdapter by lazy { ContactRecyclerAdapter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,5 +65,10 @@ class ContactActivity : AppCompatActivity() {
         super.onPause()
 
         Log.d("로그", "[MainActivity][onPause] Called")
+    }
+
+    override fun onItemClicked(id: Long) {
+        Log.d("로그", "[MainActivity][onItemClicked] id = $id")
+        viewModel.deleteContact(id)
     }
 }

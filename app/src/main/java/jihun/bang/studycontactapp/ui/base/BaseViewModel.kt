@@ -1,6 +1,5 @@
-package jihun.bang.studycontactapp.ui
+package jihun.bang.studycontactapp.ui.base
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
