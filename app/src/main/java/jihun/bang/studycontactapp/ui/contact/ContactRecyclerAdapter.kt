@@ -3,18 +3,19 @@ package jihun.bang.studycontactapp.ui.contact
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import jihun.bang.studycontactapp.data.contact.ContactModel
-import jihun.bang.studycontactapp.data.contact.ContactsResponse
 import jihun.bang.studycontactapp.databinding.ContactItemBinding
-import okhttp3.internal.notify
+import jihun.bang.studycontactapp.ui.contact.util.ContactDiffCallback
 
 class ContactRecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
-    val modelList = mutableListOf<ContactModel>()
+    private val oldList = mutableListOf<ContactModel>()
+    private val newList = mutableListOf<ContactModel>()
 
     // 목록의 아이템 수
     override fun getItemCount(): Int {
-        return modelList.size
+        return oldList.size
     }
 
     // View Holder 생성
@@ -28,14 +29,17 @@ class ContactRecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
 
     // 뷰와 뷰홀더가 묶였을 때
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-//        Log.d("로그", "[RecyclerAdapter][onBindViewHolder] Called")
-        holder.bind(modelList[position])
+        // Log.d("로그", "[RecyclerAdapter][onBindViewHolder] Called")
+        holder.bind(oldList[position])
     }
 
-    fun updateItem(contactsResponse: ContactsResponse) {
+    fun updateItem(newList: List<ContactModel>) {
         Log.d("로그", "[RecyclerAdapter][updateItem] Called")
-        this.modelList.clear()
-        this.modelList.addAll(contactsResponse.contacts)
-        notifyDataSetChanged()
+        val diffUtil = ContactDiffCallback(oldList, newList)
+        val diffResult = DiffUtil.calculateDiff(diffUtil)
+
+        this.oldList.clear()
+        this.oldList.addAll(newList)
+        diffResult.dispatchUpdatesTo(this)
     }
 }

@@ -39,7 +39,7 @@ class ContactActivity : AppCompatActivity() {
         with(binding.btnAdd) {
             setOnClickListener {
                 viewModel.addContact(UUID.randomUUID().toString().substring(0, 5), UUID.randomUUID().toString().substring(0, 5) + "@test.com")
-
+                binding.recyclerView.scrollToPosition(0)
                 /*
                 // Fragment Popup
                 supportFragmentManager.commit {
@@ -58,7 +58,7 @@ class ContactActivity : AppCompatActivity() {
 
             contactsLiveData.observe(this@ContactActivity) {
                 Log.d("로그", "[ContactActivity][onCreate] contactsLiveData.observe")
-                recyclerAdapter.updateItem(it)
+                recyclerAdapter.updateItem(it.contacts)
                 binding.swipeRefreshLayout.isRefreshing = false
             }
         }
