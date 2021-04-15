@@ -14,7 +14,6 @@ class ContactRecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
 
     // 목록의 아이템 수
     override fun getItemCount(): Int {
-        Log.d("로그", "[RecyclerAdapter][getItemCount] ${modelList.size}")
         return modelList.size
     }
 
@@ -29,7 +28,7 @@ class ContactRecyclerAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
 
     // 뷰와 뷰홀더가 묶였을 때
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        Log.d("로그", "[RecyclerAdapter][onBindViewHolder] Called")
+//        Log.d("로그", "[RecyclerAdapter][onBindViewHolder] Called")
         holder.bind(modelList[position])
     }
 

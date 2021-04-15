@@ -17,7 +17,7 @@ class RecyclerViewHolder(
     // 데이터와 뷰를 묶음
     @SuppressLint("SetTextI18n")
     fun bind(model: ContactModel) {
-        Log.d("로그", "[RecyclerViewHolder][bind] Called Model = $model")
+//        Log.d("로그", "[RecyclerViewHolder][bind] Called Model = $model")
         binding.model = model
         binding.executePendingBindings()
     }
