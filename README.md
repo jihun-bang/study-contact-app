@@ -1,4 +1,4 @@
-개발 중
+# Contact Application (Study)
 
 기술 스택
 
@@ -10,6 +10,7 @@
 - View Holder
 - Koin
 - ReactiveX
+- Paging
 
 요구 사항
 - ID 와 페스워드를 서버에 검증받은 후 다음 페이지로 진입
@@ -17,3 +18,5 @@
 - 서버 요청으로 연락처 데이터 상세 조회
 - 연락처 데이터를 추가 혹은 삭제
 - 연락처 데이터의 즐겨찾기 기능(로컬 DB연동)
+
+Study 용 Application
